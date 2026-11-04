@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: taller-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /swagger/index.html
+    envVars:
+      - key: ConnectionStrings__DefaultConnection
+        sync: false
+      - key: Cors__Origins__0
+        sync: false

@@ -1,0 +1,164 @@
+@baseUrl = http://localhost:5130
+
+### GET todos los vehiculos
+GET {{baseUrl}}/api/vehiculos
+Accept: application/json
+
+### GET vehiculos con filtros
+GET {{baseUrl}}/api/vehiculos?marca=Toyota&anioMin=2020&anioMax=2023
+Accept: application/json
+
+### GET vehiculo por id
+GET {{baseUrl}}/api/vehiculos/1
+Accept: application/json
+
+### GET ordenes de un vehiculo (ruta anidada)
+GET {{baseUrl}}/api/vehiculos/1/ordenes
+Accept: application/json
+
+### GET todas las ordenes
+GET {{baseUrl}}/api/ordenes
+Accept: application/json
+
+### GET ordenes filtradas
+GET {{baseUrl}}/api/ordenes?estado=Pendiente&vehiculoId=1
+Accept: application/json
+
+### GET orden por id
+GET {{baseUrl}}/api/ordenes/1
+Accept: application/json
+
+### POST nuevo vehiculo (201)
+POST {{baseUrl}}/api/vehiculos
+Content-Type: application/json
+
+{
+  "placa": "N999ZZZ",
+  "marca": "Ford",
+  "modelo": "Fiesta",
+  "anio": 2022,
+  "color": "Rojo",
+  "clienteNombre": "Juan Perez",
+  "fechaRegistro": "2025-11-01"
+}
+
+### POST vehiculo placa duplicada (409)
+POST {{baseUrl}}/api/vehiculos
+Content-Type: application/json
+
+{
+  "placa": "P123ABC",
+  "marca": "Ford",
+  "modelo": "Fiesta",
+  "anio": 2022,
+  "clienteNombre": "Otro Cliente"
+}
+
+### POST vehiculo datos invalidos (400)
+POST {{baseUrl}}/api/vehiculos
+Content-Type: application/json
+
+{
+  "placa": "X1",
+  "marca": "",
+  "modelo": "",
+  "anio": 1800,
+  "clienteNombre": ""
+}
+
+### PUT vehiculo (204)
+PUT {{baseUrl}}/api/vehiculos/8
+Content-Type: application/json
+
+{
+  "id": 8,
+  "placa": "X234VWX",
+  "marca": "Hyundai",
+  "modelo": "Accent",
+  "anio": 2021,
+  "color": "Negro",
+  "clienteNombre": "Sofia Rivas",
+  "fechaRegistro": "2025-08-12"
+}
+
+### PUT id ruta distinto al cuerpo (400)
+PUT {{baseUrl}}/api/vehiculos/1
+Content-Type: application/json
+
+{
+  "id": 2,
+  "placa": "P123ABC",
+  "marca": "Toyota",
+  "modelo": "Corolla",
+  "anio": 2021,
+  "clienteNombre": "Carlos Mendoza"
+}
+
+### DELETE vehiculo sin ordenes (204)
+DELETE {{baseUrl}}/api/vehiculos/8
+
+### DELETE vehiculo con ordenes (409)
+DELETE {{baseUrl}}/api/vehiculos/1
+
+### GET recurso inexistente (404)
+GET {{baseUrl}}/api/vehiculos/9999
+Accept: application/json
+
+### POST nueva orden (201)
+POST {{baseUrl}}/api/ordenes
+Content-Type: application/json
+
+{
+  "vehiculoId": 2,
+  "descripcion": "Cambio de bujias",
+  "estado": "Pendiente",
+  "costoEstimado": 60.00,
+  "fechaIngreso": "2025-11-04",
+  "tecnico": "Ana L."
+}
+
+### POST orden con vehiculo inexistente (400)
+POST {{baseUrl}}/api/ordenes
+Content-Type: application/json
+
+{
+  "vehiculoId": 9999,
+  "descripcion": "Orden invalida",
+  "estado": "Pendiente",
+  "costoEstimado": 10.00,
+  "fechaIngreso": "2025-11-04"
+}
+
+### POST orden estado invalido (409)
+POST {{baseUrl}}/api/ordenes
+Content-Type: application/json
+
+{
+  "vehiculoId": 1,
+  "descripcion": "Orden con estado malo",
+  "estado": "Inventado",
+  "costoEstimado": 10.00,
+  "fechaIngreso": "2025-11-04"
+}
+
+### PUT orden (204)
+PUT {{baseUrl}}/api/ordenes/3
+Content-Type: application/json
+
+{
+  "id": 3,
+  "vehiculoId": 3,
+  "descripcion": "Diagnostico de motor (check engine)",
+  "estado": "Completada",
+  "costoEstimado": 80.00,
+  "fechaIngreso": "2025-10-20",
+  "fechaEntrega": "2025-11-04",
+  "tecnico": "Roberto M."
+}
+
+### DELETE orden (204)
+DELETE {{baseUrl}}/api/ordenes/9
+
+### GET orden inexistente (404)
+GET {{baseUrl}}/api/ordenes/9999
+Accept: application/json

@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+*.user
+appsettings.*.json
+!appsettings.json
+.env
+*.nupkg
+TestResults/
+*.key
+*.key.pub
