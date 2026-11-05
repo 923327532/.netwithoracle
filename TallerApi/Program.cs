@@ -15,7 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var corsOrigins = builder.Configuration.GetSection("Cors:Origins").Get<string[]>()
-    ?? ["https://taller-api.onrender.com"];
+    ?? ["http://129.146.87.179:8080"];
 
 builder.Services.AddCors(options =>
 {
