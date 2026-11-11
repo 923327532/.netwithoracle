@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Taller.Entidades;
 
-namespace TallerApi.Models;
+namespace Taller.Datos;
 
 public partial class TallerDbContext : DbContext
 {
@@ -11,11 +11,12 @@ public partial class TallerDbContext : DbContext
     }
 
     public virtual DbSet<OrdenTrabajo> OrdenTrabajos { get; set; }
-
     public virtual DbSet<Vehiculo> Vehiculos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<OrdenTrabajo>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("orden_trabajo_pkey");
@@ -44,7 +45,8 @@ public partial class TallerDbContext : DbContext
                 .HasColumnName("tecnico");
             entity.Property(e => e.VehiculoId).HasColumnName("vehiculo_id");
 
-            entity.HasOne(d => d.Vehiculo).WithMany(p => p.OrdenTrabajos)
+            entity.HasOne(d => d.Vehiculo)
+                .WithMany(p => p.OrdenTrabajos)
                 .HasForeignKey(d => d.VehiculoId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("orden_trabajo_vehiculo_id_fkey");
@@ -79,9 +81,5 @@ public partial class TallerDbContext : DbContext
                 .HasMaxLength(10)
                 .HasColumnName("placa");
         });
-
-        OnModelCreatingPartial(modelBuilder);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

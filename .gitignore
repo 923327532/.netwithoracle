@@ -9,3 +9,5 @@ appsettings.*.json
 TestResults/
 *.key
 *.key.pub
+*.log
+.docx_extract/

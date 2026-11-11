@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace TallerApi.Models;
+namespace Taller.Entidades;
 
 public partial class OrdenTrabajo
 {
@@ -28,6 +28,5 @@ public partial class OrdenTrabajo
     [StringLength(100)]
     public string? Tecnico { get; set; }
 
-    [JsonIgnore]
     public virtual Vehiculo? Vehiculo { get; set; }
 }

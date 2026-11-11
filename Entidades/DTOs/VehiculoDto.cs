@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace TallerApi.Models;
+namespace Taller.Entidades.DTOs;
 
-public partial class Vehiculo
+public class VehiculoDto
 {
     public int Id { get; set; }
 
@@ -30,6 +29,4 @@ public partial class Vehiculo
     public string ClienteNombre { get; set; } = null!;
 
     public DateOnly FechaRegistro { get; set; }
-
-    public virtual ICollection<OrdenTrabajo> OrdenTrabajos { get; set; } = new List<OrdenTrabajo>();
 }

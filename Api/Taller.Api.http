@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:5130
+@baseUrl = http://localhost:5221
 
 ### GET todos los vehiculos
 GET {{baseUrl}}/api/vehiculos
@@ -33,6 +33,7 @@ POST {{baseUrl}}/api/vehiculos
 Content-Type: application/json
 
 {
+  "id": 0,
   "placa": "N999ZZZ",
   "marca": "Ford",
   "modelo": "Fiesta",
@@ -47,6 +48,7 @@ POST {{baseUrl}}/api/vehiculos
 Content-Type: application/json
 
 {
+  "id": 0,
   "placa": "P123ABC",
   "marca": "Ford",
   "modelo": "Fiesta",
@@ -59,6 +61,7 @@ POST {{baseUrl}}/api/vehiculos
 Content-Type: application/json
 
 {
+  "id": 0,
   "placa": "X1",
   "marca": "",
   "modelo": "",
@@ -109,19 +112,22 @@ POST {{baseUrl}}/api/ordenes
 Content-Type: application/json
 
 {
+  "id": 0,
   "vehiculoId": 2,
   "descripcion": "Cambio de bujias",
   "estado": "Pendiente",
   "costoEstimado": 60.00,
   "fechaIngreso": "2025-11-04",
+  "fechaEntrega": "2025-11-10",
   "tecnico": "Ana L."
 }
 
-### POST orden con vehiculo inexistente (400)
+### POST orden con vehiculo inexistente (409)
 POST {{baseUrl}}/api/ordenes
 Content-Type: application/json
 
 {
+  "id": 0,
   "vehiculoId": 9999,
   "descripcion": "Orden invalida",
   "estado": "Pendiente",
@@ -134,6 +140,7 @@ POST {{baseUrl}}/api/ordenes
 Content-Type: application/json
 
 {
+  "id": 0,
   "vehiculoId": 1,
   "descripcion": "Orden con estado malo",
   "estado": "Inventado",

@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Api/">
+    <Project Path="Api/Taller.Api.csproj" />
+  </Folder>
+  <Folder Name="/Datos/">
+    <Project Path="Datos/Taller.Datos.csproj" />
+  </Folder>
+  <Folder Name="/Entidades/">
+    <Project Path="Entidades/Taller.Entidades.csproj" />
+  </Folder>
+  <Folder Name="/Negocio/">
+    <Project Path="Negocio/Taller.Negocio.csproj" />
+  </Folder>
+</Solution>
